@@ -1,0 +1,344 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personalized Learning Platform</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: #C3FFED;
+            color: #333;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-right: 30px;
+        }
+
+        li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        li a:hover {
+            background-color: #3498db;
+            color: #2c3e50;
+        }
+
+        /* Section for AI Description */
+        .description-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 100px auto 40px;
+            padding: 20px;
+            max-width: 1200px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .description-text {
+            width: 60%;
+            padding: 20px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .description-image {
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .description-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image Gallery */
+        .gallery-section {
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            color: #2c3e50;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ChatGPT-like Answer Box */
+        .input-container {
+            margin: 40px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin-left: 20%; /* Moves the input section to the right */
+        }
+
+        .input-container h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            font-size: 1.1em;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        button:hover {
+            background-color: #2c3e50;
+        }
+
+        .response-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Recommendation Dashboard */
+        .dashboard {
+            margin: 50px auto;
+            height: 30px;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendations h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .recommendations button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 8px;
+        }
+
+        .recommendations button:hover {
+            background-color: #2c3e50;
+        }
+        .ai-footer {
+    background-color: #2c3e50;
+    margin-up: 30px;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9em;
+}
+
+.ai-footer span {
+    color: #3498db;
+    font-weight: bold;
+}
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#" class="logo">AI<span>LEARN</span></a>
+        <ul>
+            <li><a href="#index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sign.html">Sign In</a></li>
+            <li><a href="entertain.html">Entertain</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- AI Description Section -->
+    <section class="description-section">
+        <div class="description-text">
+            <h2>What is AI?</h2>
+            <p>
+                Artificial Intelligence (AI) mimics human intelligence to perform tasks like learning, reasoning, and problem-solving.
+            </p>
+            <h3>What is ChatGPT?</h3>
+            <p>
+                ChatGPT, a model by OpenAI, helps users interact naturally with AI to enhance learning and assist with various tasks.
+            </p>
+        </div>
+        <div class="description-image">
+            <img src="https://ih1.redbubble.net/image.4645193321.0183/st,small,507x507-pad,600x600,f8f8f8.jpg" alt="Logo">
+        </div>
+    </section>
+
+     <section class="input-container">
+        <h2>About ChatGPT</h2>
+        <p>
+            ChatGPT is an advanced conversational AI model created by OpenAI. It is designed to engage in human-like 
+            text-based conversations, offering answers, explanations, and personalized suggestions. Leveraging natural 
+            language understanding and generation, ChatGPT supports diverse applications, including education, problem-solving, 
+            and virtual assistance. Its flexibility and adaptability make it a powerful tool for enhancing digital interactions.
+        </p>
+    </section>
+
+    
+
+    <!-- Image Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="gallery-header">Explore AI in Action</h2>
+        <div class="gallery-grid">
+            <img src="https://static.independent.co.uk/2023/08/11/16/2048x1536.png" alt="AI Image 1">
+            <img src="https://cdn.mos.cms.futurecdn.net/VFLt5vHV7aCoLrLGjP9Qwm-320-80.jpg" alt="AI Image 2">
+            <img src="https://s3-eu-central-1.amazonaws.com/24tech.dk/wp-content/uploads/2023/03/22110029/ChatGPT-fake-news-scaled-aspect-ratio-16-9-810x456.jpg" alt="AI Image 3">
+        </div>
+    </section>
+
+    <!-- ChatGPT-like Answer Box -->
+    <section class="input-container">
+        <h2>Ask AI Anything</h2>
+        <textarea id="user-input" placeholder="Ask your question here..."></textarea>
+        <button id="submit-btn">Get Answer</button>
+        <div id="response-container" class="response-container" style="display:none;">
+            <h3>AI Response:</h3>
+            <p id="ai-response"></p>
+        </div>
+    </section>
+
+    
+</main>
+
+<script>
+    document.getElementById('submit-btn').addEventListener('click', function() {
+        const userInput = document.getElementById('user-input').value.trim();
+        const aiResponseElement = document.getElementById('ai-response');
+        const responseContainer = document.getElementById('response-container');
+
+        if (userInput) {
+            let aiResponse = '';
+
+            // AI-like responses based on input
+            if (userInput.toLowerCase().includes('hello') || userInput.toLowerCase().includes('hi')) {
+                aiResponse = "Hi there! My name is ChatGPT, and I'm here to answer everything you ask for. How can I help you today?";
+            } else if (userInput.toLowerCase().includes('what is your name')) {
+                aiResponse = "I'm ChatGPT, your personal AI assistant! Feel free to ask me anything.";
+            } else if (userInput.toLowerCase().includes('how are you')) {
+                aiResponse = "I'm just an AI program, but I'm doing great! How about you?";
+            } else if (userInput.toLowerCase().includes('what can you do')) {
+                aiResponse = "I can help answer your questions, assist with learning concepts, and provide personalized guidance to support your studies.";
+            } else if (userInput.toLowerCase().includes('bye')) {
+                aiResponse = "Goodbye! Have a wonderful day ahead! 😊";
+            } else {
+                aiResponse = "That's an interesting question! Let me think... Can you tell me more or ask differently?";
+            }
+
+            // Display the AI response
+            aiResponseElement.textContent = aiResponse;
+            responseContainer.style.display = 'block';
+        } else {
+            alert("Please type a question or greeting.");
+        }
+    });
+</script>
+
+</body>
+ 
+    
+
+</html>
